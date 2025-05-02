@@ -1,0 +1,92 @@
+package lv3;
+
+import java.util.Stack;
+
+
+public class ArithmeticCalculator<T extends Number> implements calculate_function {
+    private T num1, num2;
+    private char op;
+    private double rs;
+    private Stack<Double> resultlist = new Stack<>();
+
+
+    public void setNum1(T num1) {
+        this.num1 = num1;
+    }
+
+    public void setNum2(T num2) {
+        this.num2 = num2;
+    }
+
+    public void setOp(char op) {
+        this.op = op;
+    }
+
+    public char getOp() {
+        return op;
+    }
+
+    public double calculate(char op){
+        OperatorType operator = OperatorType.fromChar(op);
+
+        switch (operator) {  // switch (OperatorType)
+            case PLUS -> add();
+            case MINUS -> sub();
+            case MULTIPLY -> mul();
+            case DIVIDE -> div();
+        }
+        return rs;
+    }
+
+
+    @Override
+    public void add() {
+        rs = num1.doubleValue()+num2.doubleValue();
+        resultlist.push(rs);
+    }
+
+    @Override
+    public void sub() {
+        rs = num1.doubleValue()-num2.doubleValue();
+        resultlist.push(rs);
+    }
+
+    @Override
+    public void mul() {
+        rs = num1.doubleValue()*num2.doubleValue();
+        resultlist.push(rs);
+    }
+
+    @Override
+    public void div() {
+        if(num2.doubleValue()==0) throw new ArithmeticException();
+        else {
+            rs = num1.doubleValue() / num2.doubleValue();
+            resultlist.push(rs);
+        }
+    }
+
+    public void printResult(){
+
+        if(resultlist.isEmpty()){
+            System.out.println("저장된 값이 없습니다.");
+        }else {
+            System.out.print("모든 결과 값 출력: ");
+            for (Double v : resultlist) {
+                System.out.print(v + " ");
+            }
+        }
+        System.out.println();
+    }
+
+    public double removeResult() {
+        return resultlist.pop();
+    }
+
+    public void printResultsGreaterThan(double input) {
+        System.out.print("입력값보다 큰 결과값 들:");
+        resultlist.stream()
+                .filter(r -> r > input)
+                .forEach(System.out::println);
+    }
+}
