@@ -42,7 +42,11 @@ public class App {
             /* 반복문 종료 */
         }
         //removeResult() 활용
-        System.out.println("가장 최근 결과값을 삭제합니다. : " + cal.removeResult());
+        try {
+            System.out.println("가장 최근 결과값을 삭제합니다. : " + cal.removeResult());
+        }catch(NullPointerException e){
+            System.out.println("removeResult() : 현재 저장된 값은 없습니다");
+        }
         //모든 결과 값 출력
         cal.printResult();
 

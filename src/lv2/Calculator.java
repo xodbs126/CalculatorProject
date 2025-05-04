@@ -1,13 +1,15 @@
 package lv2;
 
 import java.util.InputMismatchException;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Stack;
 
 public class Calculator implements calculate_function {
 
     private int num1,num2;
     private char op;
-    private Stack<Double> result = new Stack<>();
+    private Queue<Double> result = new LinkedList<>();
     private double rs;
 
 
@@ -46,10 +48,14 @@ public class Calculator implements calculate_function {
     }
 
     public double removeResult() {
-        return result.pop();
+         return result.poll();
     }
 
     public void printResult(){
+        if(result.isEmpty()) {
+            System.out.println("printResult(): 현재 저장된 값은 없습니다.");
+            return;
+        }
         System.out.print("모든 결과 값 출력: ");
         for (Double v : result) {
             System.out.print(v+" ");
@@ -59,21 +65,21 @@ public class Calculator implements calculate_function {
     @Override
     public double add() {
         rs = num1+num2;
-        result.push(rs);
+        result.offer(rs);
         return rs;
     }
 
     @Override
     public double sub() {
         rs = num1-num2;
-        result.push(rs);
+        result.offer(rs);
         return rs;
     }
 
     @Override
     public double mul() {
         rs = num1*num2;
-        result.push(rs);
+        result.offer(rs);
         return rs;
     }
 
@@ -83,7 +89,7 @@ public class Calculator implements calculate_function {
             throw new ArithmeticException();
         }
         rs = num1/(double)num2;
-        result.push(rs);
+        result.offer(rs);
         return rs;
     }
 }

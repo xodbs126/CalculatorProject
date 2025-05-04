@@ -1,5 +1,7 @@
 package lv3;
 
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Stack;
 
 
@@ -7,7 +9,7 @@ public class ArithmeticCalculator<T extends Number> implements calculate_functio
     private T num1, num2;
     private char op;
     private double rs;
-    private Stack<Double> resultlist = new Stack<>();
+    private Queue<Double> resultlist = new LinkedList<>();
 
 
     /*
@@ -50,19 +52,19 @@ public class ArithmeticCalculator<T extends Number> implements calculate_functio
     @Override
     public void add() {
         rs = num1.doubleValue()+num2.doubleValue();
-        resultlist.push(rs);
+        resultlist.offer(rs);
     }
 
     @Override
     public void sub() {
         rs = num1.doubleValue()-num2.doubleValue();
-        resultlist.push(rs);
+        resultlist.offer(rs);
     }
 
     @Override
     public void mul() {
         rs = num1.doubleValue()*num2.doubleValue();
-        resultlist.push(rs);
+        resultlist.offer(rs);
     }
 
     @Override
@@ -70,7 +72,7 @@ public class ArithmeticCalculator<T extends Number> implements calculate_functio
         if(num2.doubleValue()==0) throw new ArithmeticException();
         else {
             rs = num1.doubleValue() / num2.doubleValue();
-            resultlist.push(rs);
+            resultlist.offer(rs);
         }
     }
 
@@ -91,7 +93,7 @@ public class ArithmeticCalculator<T extends Number> implements calculate_functio
     }
 
     public double removeResult() {
-        return resultlist.pop();
+        return resultlist.poll();
     }
 
     public void printRsBigger(double input) {

@@ -42,8 +42,12 @@ public class App {
             if(cmd.equals("exit")) break;
             /* 반복문 종료 */
         }
-        //removeResult() 활용
-        System.out.println("가장 최근 결과값을 삭제합니다. : " + IntegerCal.removeResult());
+        //removeResult() 활용\
+        try {
+            System.out.println("가장 최근 결과값을 삭제합니다. : " + IntegerCal.removeResult());
+        }catch (NullPointerException e){
+            System.out.println("현재 큐가 비어있습니다.");
+        }
         //모든 결과 값 출력
         IntegerCal.printResult();
 
