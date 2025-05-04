@@ -9,13 +9,10 @@ public enum OperatorType {
         this.symbol = symbol;
     }
 
-    public char getSymbol() {
-        return symbol;
-    }
-
     public static OperatorType fromChar(char c) {
         for (OperatorType op : values()) {
-            if (op.symbol == c) return op;
+            if (op.symbol == c)
+                return op;
         }
         throw new IllegalStateException();
     }

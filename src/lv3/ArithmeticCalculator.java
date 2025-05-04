@@ -10,6 +10,9 @@ public class ArithmeticCalculator<T extends Number> implements calculate_functio
     private Stack<Double> resultlist = new Stack<>();
 
 
+    /*
+     * Getter / Setter 설정
+     */
     public void setNum1(T num1) {
         this.num1 = num1;
     }
@@ -26,10 +29,12 @@ public class ArithmeticCalculator<T extends Number> implements calculate_functio
         return op;
     }
 
+    /**
+     * 계산 로직 구현
+     */
     public double calculate(char op){
-        OperatorType operator = OperatorType.fromChar(op);
 
-        switch (operator) {  // switch (OperatorType)
+        switch (OperatorType.fromChar(op)) {
             case PLUS -> add();
             case MINUS -> sub();
             case MULTIPLY -> mul();
@@ -39,6 +44,9 @@ public class ArithmeticCalculator<T extends Number> implements calculate_functio
     }
 
 
+    /**
+     * 사칙 연산
+     */
     @Override
     public void add() {
         rs = num1.doubleValue()+num2.doubleValue();
@@ -66,6 +74,9 @@ public class ArithmeticCalculator<T extends Number> implements calculate_functio
         }
     }
 
+    /**
+     * 결과 출력
+     */
     public void printResult(){
 
         if(resultlist.isEmpty()){
@@ -83,10 +94,11 @@ public class ArithmeticCalculator<T extends Number> implements calculate_functio
         return resultlist.pop();
     }
 
-    public void printResultsGreaterThan(double input) {
+    public void printRsBigger(double input) {
         System.out.print("입력값보다 큰 결과값 들:");
         resultlist.stream()
-                .filter(r -> r > input)
+                .filter(rs -> rs > input)
                 .forEach(System.out::println);
     }
 }
+

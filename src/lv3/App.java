@@ -1,7 +1,5 @@
 package lv3;
 
-import lv2.Calculator;
-
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -85,7 +83,7 @@ public class App {
         //입력값보다 큰 데이터 출력
         System.out.print("Double형 값을 하나 입력하세요.: ");
         Double compare = sc.nextDouble();
-        DoubleCal.printResultsGreaterThan(compare);
+        DoubleCal.printRsBigger(compare);
 
         //removeResult() 활용
         System.out.println("가장 최근 결과값을 삭제합니다. : " + DoubleCal.removeResult());

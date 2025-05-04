@@ -16,15 +16,20 @@ public class App {
 
             System.out.print("두 번째 숫자를 입력하세요: ");
             int num2 = sc.nextInt();
-
             System.out.print("사칙연산 기호를 입력하세요: "); // 연산자 입력
             String op = sc.next();
                 result = switch (op) { // 사칙연산 func()
                     case "+" -> num1 + num2;
                     case "-" -> num1 - num2;
                     case "*" -> num1 * num2;
-                    case "/" -> (double) num1 / num2;
-                    default -> throw new IllegalStateException(); //지원하지 않는 연산자는 예외 발생
+                    case "/" -> {
+                        if (num2 != 0) {
+                            yield (double) num1 / num2;
+                        } else {
+                            throw new ArithmeticException();
+                        }
+                    }
+                    default -> throw new IllegalStateException();
                 };
                 System.out.println("결과: " + result);
 
